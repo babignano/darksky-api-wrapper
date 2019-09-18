@@ -18,6 +18,10 @@ export default class WeatherControllerFilters {
             return moment.unix(value.time).tz(tz).isSame(startOfDay);
         });
 
+        if (!today) {
+            throw new Error("Unable to locate relevant day data");
+        }
+
         return {
             high: Math.round(today.temperatureHigh),
             low: Math.round(today.temperatureLow)

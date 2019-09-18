@@ -1,8 +1,16 @@
+import WeatherService from "../services/weather";
+import LoggingService from '../services/logger';
+import WeatherServiceFilters from "../controllers/weather/filters";
 import WeatherController from '../controllers/weather';
 import { Application } from "express";
 
 export default class Routes {
-    public weatherController: WeatherController = new WeatherController();
+
+    public weatherController: WeatherController = new WeatherController(
+        new LoggingService(),
+        new WeatherService(),
+        new WeatherServiceFilters()
+    );
   
     public routes(app: Application): void {
 

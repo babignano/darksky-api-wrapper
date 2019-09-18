@@ -1,48 +1,53 @@
-import nock from "nock";
 import assert from "assert";
-import supertest from "supertest";
-import app from 
-
-describe('weather controller', function () {
-
-    const app 
-
-    before(function () {
-        nock('https://api.github.com')
-            .get('/repos/atom/atom/license')
-            .reply(200, {
-                license: {
-                key: 'mit',
-                name: 'MIT License',
-                spdx_id: 'MIT',
-                url: 'https://api.github.com/licenses/mit',
-                node_id: 'MDc6TGljZW5zZTEz',
-                },
-            })
-    });
-    it('should return a common result', function () {
-
-    })
-})
- 
-const scope = nock('https://api.github.com')
-  .get('/repos/atom/atom/license')
-  .reply(200, {
-    license: {
-      key: 'mit',
-      name: 'MIT License',
-      spdx_id: 'MIT',
-      url: 'https://api.github.com/licenses/mit',
-      node_id: 'MDc6TGljZW5zZTEz',
-    },
-  })
+import fixture from "./filter.fixture"
+import WeatherController from "../../../src/controllers/weather";
+import WeatherService from "../../../src/services/weather";
+import LoggingService from '../../../src/services/logger';
+import WeatherServiceFilters from "../../../src/controllers/weather/filters";
+import { stubObject } from "ts-sinon";
+import { mockReq, mockRes } from 'sinon-express-mock'
 
 
-  var 
-  describe('Array', function() {
-    describe('#indexOf()', function() {
-      it('should return -1 when the value is not present', function() {
-        assert.equal([1, 2, 3].indexOf(4), -1);
+describe('Weather Controller', function () {
+
+    describe('index()', function () {
+
+      let controller: WeatherController;
+      let loggingService: LoggingService;
+      let weatherService: WeatherService;
+      let weatherServiceFilters: WeatherServiceFilters;
+      let loggingServiceStub;
+      let weatherServiceStub;
+      let weatherServiceFiltersStub;
+
+      before(function () {
+
+        loggingService = new LoggingService();
+        weatherService = new WeatherService();
+        weatherServiceFilters = new WeatherServiceFilters();
+
+        loggingServiceStub = stubObject<LoggingService>(loggingService);
+        weatherServiceStub = stubObject<WeatherService>(weatherService);
+        weatherServiceFiltersStub = stubObject<WeatherServiceFilters>(weatherServiceFilters);
+
+        controller = new WeatherController(
+          loggingServiceStub,
+          weatherServiceStub,
+          weatherServiceFiltersStub
+        );
       });
+  
+      it('should return an error status when missing params', function () {
+          const req = mockReq();
+          const res = mockRes();
+          controller.index(req, res);
+          assert(res.sendStatus.calledWith(400));
+      });
+      it('should return an error status when missing params', function () {
+        const req = mockReq();
+        const res = mockRes();
+        controller.index(req, res);
+        assert(res.sendStatus.calledWith(400));
     });
-  });
+    });
+});

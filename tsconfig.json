@@ -12,7 +12,8 @@
       "esModuleInterop": true,
       "importHelpers": true,
       "types": [
-        "node"
+        "node",
+        "mocha"
       ],
       "typeRoots": [
         "node_modules/@types"
@@ -22,6 +23,7 @@
       }
     },
     "include": [
-      "./src/**/*.ts"
+      "./src/**/*.ts",
+      "./test/**/*.ts"
     ]
 }
