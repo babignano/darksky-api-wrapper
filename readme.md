@@ -1,4 +1,6 @@
-# News Corp TCOG Test
+# DarkSky API Wrapper
+
+Simple API wrapper service for the DarkSky API [https://darksky.net]
 
 ## Instructions & Setup
 
