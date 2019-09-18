@@ -7,7 +7,7 @@
   "scripts": {
     "test": "mocha -r ts-node/register test/**/*.test.ts",
     "build": "tsc",
-    "start": "node build/index.js",
+    "start": "node -r dotenv/config build/src/server.js",
     "dev": "nodemon"
   },
   "engines": {

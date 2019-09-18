@@ -2,7 +2,7 @@ import production from "./production";
 import development from "./development";
 import { StoreConfig } from 'cache-manager';
 
-interface WeatherServiceConfig {
+export interface WeatherServiceConfig {
     cache: StoreConfig,
     endpoint: string,
     args: object

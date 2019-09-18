@@ -5,9 +5,9 @@ export default class CacheService {
     private cache: any;
     private namespace: string;
 
-    constructor(namespace:string) {
+    constructor(namespace:string, config) {
         this.namespace = namespace;
-        this.cache = cacheManager.caching(config.services.weather.cache);
+        this.cache = cacheManager.caching(config);
     }
     
     public get(key: string):Promise<string> {

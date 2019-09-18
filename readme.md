@@ -1,6 +1,6 @@
 # DarkSky API Wrapper
 
-Simple API wrapper service for the DarkSky API [https://darksky.net]
+Simple API wrapper service for the DarkSky API [https://darksky.net](https://darksky.net)
 
 ## Instructions & Setup
 

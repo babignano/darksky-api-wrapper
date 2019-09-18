@@ -2,13 +2,19 @@ import WeatherService from "../services/weather";
 import LoggingService from '../services/logger';
 import WeatherServiceFilters from "../controllers/weather/filters";
 import WeatherController from '../controllers/weather';
+import CacheService from "../services/cache";
+import config from "../config";
 import { Application } from "express";
 
 export default class Routes {
 
     public weatherController: WeatherController = new WeatherController(
         new LoggingService(),
-        new WeatherService(),
+        new WeatherService(
+            new LoggingService(),
+            new CacheService('weather', config.services.weather.cache),
+            config.services.weather
+        ),
         new WeatherServiceFilters()
     );
   
