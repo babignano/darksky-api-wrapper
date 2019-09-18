@@ -18,6 +18,9 @@ export default class WeatherService {
         this.args = this.makeParams(config.args);
     }
 
+    /**
+     * Takes key/value pairs to join into a url string
+     */
     private makeParams(args:object):string {
         return lodash.reduce(args, (acc:string, value:string, name:string) => {
             return `${acc}&${name}=${value}`;
@@ -25,6 +28,8 @@ export default class WeatherService {
     }
     
     public async get(latitude:Number, longitude:Number) {
+
+        // Upstream service takes comma sep
         const location = `${latitude},${longitude}`;
 
         try {

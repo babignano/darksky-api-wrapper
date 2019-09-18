@@ -56,7 +56,8 @@ describe('Weather Controller', function () {
         const res = mockRes();
         const req = mockReq({
           params: {
-            latlong: '33,-150'
+            latitude: '33',
+            longitude: '-150'
           }
         });
 
@@ -72,7 +73,8 @@ describe('Weather Controller', function () {
       const res = mockRes();
       const req = mockReq({
         params: {
-          latlong: '33,-150'
+          latitude: '33',
+          longitude: '-150'
         }
       });
 
@@ -92,7 +94,8 @@ describe('Weather Controller', function () {
       const res = mockRes();
       const req = mockReq({
         params: {
-          latlong: '33,-150'
+          latitude: '33',
+          longitude: '-150'
         }
       });
 

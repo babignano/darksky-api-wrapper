@@ -37,14 +37,13 @@ export default class WeatherController {
     }
 
     async index(req: express.Request, res: express.Response) {
-        let latlong:string = req.params.latlong || '';
         let latitude:number;
         let longitude:number;
         let data:any = {};
 
         try {
-            latitude = this.parse(latlong.split(',')[0]);
-            longitude = this.parse(latlong.split(',')[1]);
+            latitude = this.parse(req.params.latitude);
+            longitude = this.parse(req.params.longitude);
         } catch (e) {
             this.logger.debug(e);
             return res.sendStatus(400);

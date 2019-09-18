@@ -1,6 +1,7 @@
 import lodash from "lodash";
 import moment from "moment-timezone";
 
+
 interface WeatherServiceResponse {
     high: number,
     low: number
@@ -14,6 +15,8 @@ export default class WeatherControllerFilters {
         const tz = data.timezone;
         const startOfDay = moment.tz(tz).startOf('day');
 
+        // First day item with a start of day that matches the 
+        // start of today in the timezone in the response 
         const today = lodash.find(data.daily.data, (value:any) => {
             return moment.unix(value.time).tz(tz).isSame(startOfDay);
         });

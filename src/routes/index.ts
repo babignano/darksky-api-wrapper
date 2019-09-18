@@ -22,6 +22,6 @@ export default class Routes {
 
         // Useless arrow function sigh...
         // https://stackoverflow.com/questions/40018472/implement-express-controller-class-with-typescript
-        app.route("/weather/:latlong").get((req, res) => this.weatherController.index(req, res));
+        app.route("/weather/:latitude/:longitude").get((req, res) => this.weatherController.index(req, res));
     }
 }
